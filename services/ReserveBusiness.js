@@ -102,7 +102,7 @@ class ReserveBusiness {
         queryBuilder.setRelated(["person", "person.statistics"]);
         var reservationFound = await Backendless.Data.of("reserve").find(queryBuilder);
 
-        if(reservationFound.length != 1){
+        if(reservationFound.length !== 1){
           return createError(-7009, "No_existing_reservation");
         }
         reservationFound[0].rideId = reservation.ride;
