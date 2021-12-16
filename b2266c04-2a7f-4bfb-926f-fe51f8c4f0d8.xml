@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<namespaces>
+  <namespace name="services" fullname="services">
+    <service name="ReserveBusiness" description="ReserveBusiness" fullname="services.ReserveBusiness" namespace="services">
+      <method name="validateSearch" type="void" nativetype="void" fulltype="void" javatype="void">
+      </method>
+      <method name="testDate" type="void" nativetype="void" fulltype="void" javatype="void" description="edit person info" method="POST" path="/SearchRides">
+        <arg name="searchInfo" type="SearchInfo" nativetype="services.SearchInfo" fulltype="services.SearchInfo" javatype="services.SearchInfo" required="true"/>
+      </method>
+      <method name="searchRides" type="void" nativetype="void" fulltype="void" javatype="void" description="edit person info" method="POST" path="/SearchRides">
+        <arg name="searchInfo" type="SearchInfo" nativetype="services.SearchInfo" fulltype="services.SearchInfo" javatype="services.SearchInfo" required="true"/>
+      </method>
+      <method name="getReservation" type="void" nativetype="void" fulltype="void" javatype="void" description="edit person info" method="POST" path="/GetReservation">
+        <arg name="reservation" type="Reserve" nativetype="services.Reserve" fulltype="services.Reserve" javatype="services.Reserve" required="true"/>
+      </method>
+      <method name="reserveSeat" type="void" nativetype="void" fulltype="void" javatype="void" description="edit person info" method="POST" path="/ReserveSeat">
+        <arg name="reserve" type="Reserve" nativetype="services.Reserve" fulltype="services.Reserve" javatype="services.Reserve" required="true"/>
+      </method>
+      <method name="validateReserveSeats" type="void" nativetype="void" fulltype="void" javatype="void">
+      </method>
+      <method name="editReservation" type="void" nativetype="void" fulltype="void" javatype="void" method="POST" path="/EditReservation">
+        <arg name="newReservation" type="Reserve" nativetype="services.Reserve" fulltype="services.Reserve" javatype="services.Reserve" required="true"/>
+        <arg name="fullName" type="String" nativetype="String" fulltype="String" javatype="java.lang.String" required="true"/>
+      </method>
+      <method name="validateEditReservation" type="void" nativetype="void" fulltype="void" javatype="void">
+      </method>
+      <method name="cancelReserved" type="void" nativetype="void" fulltype="void" javatype="void" description="edit person info" method="POST" path="/CancelReserved">
+        <arg name="reserve" type="Reserve" nativetype="services.Reserve" fulltype="services.Reserve" javatype="services.Reserve" required="true"/>
+      </method>
+    </service>
+    <datatype name="Location" description="Location" fullname="services.Location" typeNamespace="services">
+    </datatype>
+    <datatype name="SearchInfo" description="SearchInfo" fullname="services.SearchInfo" typeNamespace="services">
+      <field name="from" type="Location" nativetype="services.Location" fulltype="services.Location" javatype="services.Location"/>
+      <field name="to" type="Location" nativetype="services.Location" fulltype="services.Location" javatype="services.Location"/>
+      <field name="minDate" type="DATETIME" nativetype="DATETIME" fulltype="DATETIME" javatype="DATETIME"/>
+      <field name="maxDate" type="DATETIME" nativetype="DATETIME" fulltype="DATETIME" javatype="DATETIME"/>
+      <field name="passengersNumber" type="NUMBER" nativetype="float" fulltype="NUMBER" javatype="float"/>
+    </datatype>
+    <datatype name="Reserve" description="Reserve" fullname="services.Reserve" typeNamespace="services">
+    </datatype>
+  </namespace>
+  <runtime generationMode="FULL">
+  </runtime>
+</namespaces>

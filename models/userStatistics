@@ -1,0 +1,52 @@
+'use strict';
+
+class UserStatistics extends Backendless.ServerCode.PersistenceItem {
+  constructor() {
+    super();
+    
+     /**
+     @name userStatistics#fives
+     @type Number
+     */
+    this.fives = undefined;
+
+     /**
+     @name userStatistics#fours
+     @type Number
+     */
+    this.fours = undefined;
+    
+      /**
+     @name userStatistics#threes
+     @type Number
+     */
+    this.threes = undefined;
+    
+      /**
+     @name userStatistics#twos
+     @type Number
+     */
+    this.twos = undefined;
+    
+      /**
+     @name userStatistics#ones
+     @type Number
+     */
+    this.ones = undefined;
+    
+     /**
+     @name userStatistics#acomplishedRides
+     @type Number
+     */
+    this.acomplishedRides = undefined;
+    
+     /**
+     @name userStatistics#canceledRides
+     @type Number
+     */
+    this.canceledRides = undefined;
+
+  }
+}
+
+module.exports = Backendless.ServerCode.addType(UserStatistics);

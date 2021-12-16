@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<namespaces>
+  <namespace name="services" fullname="services">
+    <service name="RideBusiness" description="RideBusiness" fullname="services.RideBusiness" namespace="services">
+      <method name="addRide" type="void" nativetype="void" fulltype="void" javatype="void" description="List rides" method="POST" path="/AddRide">
+        <arg name="ride" type="Ride" nativetype="services.Ride" fulltype="services.Ride" javatype="services.Ride" required="true"/>
+      </method>
+      <method name="editRide" type="void" nativetype="void" fulltype="void" javatype="void" description="List rides" method="POST" path="/EditRide">
+        <arg name="newRide" type="Ride" nativetype="services.Ride" fulltype="services.Ride" javatype="services.Ride" required="true"/>
+      </method>
+      <method name="deleteRide" type="void" nativetype="void" fulltype="void" javatype="void" description="List rides" method="POST" path="/CancelRide">
+        <arg name="ride" type="Ride" nativetype="services.Ride" fulltype="services.Ride" javatype="services.Ride" required="true"/>
+      </method>
+      <method name="getMyUpcomingRides" type="void" nativetype="void" fulltype="void" javatype="void" description="List rides" method="POST" path="/GetMyUpcomingRides">
+      </method>
+      <method name="getMyRidesHistory" type="void" nativetype="void" fulltype="void" javatype="void" description="List rides" method="POST" path="/GetMyRidesHistory">
+        <arg name="user" type="User" nativetype="User" fulltype="User" javatype="User" required="true"/>
+      </method>
+      <method name="getLocationCoord" type="void" nativetype="void" fulltype="void" javatype="void" description="List rides" method="POST" path="/GetLocation">
+        <arg name="location" type="Location" nativetype="services.Location" fulltype="services.Location" javatype="services.Location" required="true"/>
+      </method>
+    </service>
+    <datatype name="Ride" description="Ride" fullname="services.Ride" typeNamespace="services">
+    </datatype>
+    <datatype name="Location" description="Location" fullname="services.Location" typeNamespace="services">
+    </datatype>
+  </namespace>
+  <runtime generationMode="FULL">
+  </runtime>
+</namespaces>

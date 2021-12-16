@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<namespaces>
+  <namespace name="services" fullname="services">
+    <service name="SendSmsVerification" description="SendSmsVerification" fullname="services.SendSmsVerification" namespace="services">
+      <method name="Send" type="void" nativetype="void" fulltype="void" javatype="void" description="tokensisii" method="POST" path="/Send">
+        <arg name="token" type="Token" nativetype="Token" fulltype="Token" javatype="Token" required="true"/>
+      </method>
+    </service>
+  </namespace>
+  <runtime generationMode="FULL">
+  </runtime>
+</namespaces>

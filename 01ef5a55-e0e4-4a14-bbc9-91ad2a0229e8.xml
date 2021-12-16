@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<namespaces>
+  <namespace name="services" fullname="services">
+    <service name="CarBusiness" description="CarBusiness" fullname="services.CarBusiness" namespace="services">
+      <method name="addCar" type="void" nativetype="void" fulltype="void" javatype="void" method="POST" path="/AddCar">
+        <arg name="car" type="Car" nativetype="services.Car" fulltype="services.Car" javatype="services.Car" required="true"/>
+      </method>
+      <method name="UpdateCar" type="void" nativetype="void" fulltype="void" javatype="void" method="POST" path="/UpdateCar">
+        <arg name="car" type="Car" nativetype="services.Car" fulltype="services.Car" javatype="services.Car" required="true"/>
+      </method>
+      <method name="deleteCar" type="void" nativetype="void" fulltype="void" javatype="void" method="POST" path="/DeleteCar">
+        <arg name="car" type="Car" nativetype="services.Car" fulltype="services.Car" javatype="services.Car" required="true"/>
+      </method>
+    </service>
+    <datatype name="Car" description="Car" fullname="services.Car" typeNamespace="services">
+    </datatype>
+  </namespace>
+  <runtime generationMode="FULL">
+  </runtime>
+</namespaces>

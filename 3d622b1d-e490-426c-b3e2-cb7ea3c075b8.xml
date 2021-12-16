@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<namespaces>
+  <namespace name="services" fullname="services">
+    <service name="UserBusiness" description="UserBusiness" fullname="services.UserBusiness" namespace="services">
+      <method name="logout" type="void" nativetype="void" fulltype="void" javatype="void" description="this function to send email" method="POST" path="/Logout">
+      </method>
+      <method name="contactUs" type="void" nativetype="void" fulltype="void" javatype="void" description="this function to send email" method="POST" path="/ContactUs">
+        <arg name="data" type="var" nativetype="var" fulltype="var" javatype="var" required="true"/>
+      </method>
+      <method name="checkUserExist" type="void" nativetype="void" fulltype="void" javatype="void" description="request code for loggin" method="POST" path="/CheckUserExist">
+        <arg name="user" type="User" nativetype="User" fulltype="User" javatype="User" required="true"/>
+      </method>
+      <method name="changeEmail" type="void" nativetype="void" fulltype="void" javatype="void" method="POST" path="/ChangeEmail">
+        <arg name="user" type="User" nativetype="User" fulltype="User" javatype="User" required="true"/>
+      </method>
+      <method name="requestCode" type="void" nativetype="void" fulltype="void" javatype="void" description="request verification code for loggin" method="POST" path="/RequestCode">
+        <arg name="person" type="Person" nativetype="services.Person" fulltype="services.Person" javatype="services.Person" required="true"/>
+      </method>
+      <method name="login" type="void" nativetype="void" fulltype="void" javatype="void" description="login user" method="POST" path="/Login">
+        <arg name="person" type="Person" nativetype="services.Person" fulltype="services.Person" javatype="services.Person" required="true"/>
+      </method>
+      <method name="autologin" type="void" nativetype="void" fulltype="void" javatype="void" description="this methode is invoked on app startup" method="POST" path="/AutoLogin">
+        <arg name="user" type="User" nativetype="User" fulltype="User" javatype="User" required="true"/>
+      </method>
+      <method name="UpdateNotificationToken" type="void" nativetype="void" fulltype="void" javatype="void" description="this methode is to update token of FCM" method="POST" path="/UpdateNotificationToken">
+        <arg name="request" type="User" nativetype="User" fulltype="User" javatype="User" required="true"/>
+      </method>
+      <method name="changePhone" type="void" nativetype="void" fulltype="void" javatype="void" method="POST" path="/ChangePhone">
+        <arg name="user" type="User" nativetype="User" fulltype="User" javatype="User" required="true"/>
+      </method>
+      <method name="register" type="void" nativetype="void" fulltype="void" javatype="void" description="register user" method="POST" path="/Register">
+        <arg name="person" type="Person" nativetype="services.Person" fulltype="services.Person" javatype="services.Person" required="true"/>
+      </method>
+      <method name="forceRegister" type="void" nativetype="void" fulltype="void" javatype="void" description="force register user" method="POST" path="/ForceRegister">
+        <arg name="person" type="Person" nativetype="services.Person" fulltype="services.Person" javatype="services.Person" required="true"/>
+      </method>
+      <method name="testNotification" type="void" nativetype="void" fulltype="void" javatype="void" description="force register user" method="POST" path="/ForceRegister">
+        <arg name="person" type="Person" nativetype="services.Person" fulltype="services.Person" javatype="services.Person" required="true"/>
+      </method>
+    </service>
+    <datatype name="Person" description="Person" fullname="services.Person" typeNamespace="services">
+    </datatype>
+  </namespace>
+  <runtime generationMode="FULL">
+  </runtime>
+</namespaces>
