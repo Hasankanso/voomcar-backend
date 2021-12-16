@@ -68,7 +68,6 @@ class ReserveBusiness {
 
         var point1 = "'POINT(" + searchInfo.from.longitude + " " + searchInfo.from.latitude + ")'";
         var point2 = "'POINT(" + searchInfo.to.longitude + " " + searchInfo.to.latitude + ")'";
-        
         var whereClause = "leavingDate >= '" + searchInfo.minDate + "' AND leavingDate <= '" + searchInfo.maxDate + "' AND status != 'CANCELED' AND availableSeats >=" + searchInfo.passengersNumber + " AND " +
             "distanceOnSphere(from.position, " + point1 + ") <= " + radius + " AND distanceOnSphere(to.position, " + point2 + ") <= " + radius;
         var queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
@@ -103,7 +102,7 @@ class ReserveBusiness {
         queryBuilder.setRelated(["person", "person.statistics"]);
         var reservationFound = await Backendless.Data.of("reserve").find(queryBuilder);
 
-        if(reservationFound.length != 1){
+        if(reservationFound.length !== 1){
           return createError(-7009, "No_existing_reservation");
         }
         reservationFound[0].rideId = reservation.ride;
