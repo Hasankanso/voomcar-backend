@@ -806,7 +806,6 @@ class UserBusiness {
      * @private
      */
     static async deleteDriver(driver) {
-        const {sendNotificationToMultipleUser} = require('../lib/generalRoutines');
         //get cars
         var whereClause = "driver='" + driver.objectId + "'";
         var queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
@@ -851,7 +850,7 @@ if(cars.length)
             queryBuilder.setRelated(["person"]);
             var passengers = await Backendless.Data.of("reserve").find(queryBuilder);
 
-            if (passengers.length != 0) {
+            if (passengers.length != 0&&drivenRides[i].status!=="CANCELED") {
                 var tokens = [];
                 for (var i = 0; i < passengers.length; i++) {
                     tokens.push(passengers[i].person.token);
