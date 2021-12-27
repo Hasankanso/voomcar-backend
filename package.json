@@ -8,5 +8,8 @@
   "devDependencies": {
     "backendless-coderunner": "^6.1.5"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jwt-simple": "^0.5.6"
+  }
 }

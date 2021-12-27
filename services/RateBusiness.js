@@ -33,7 +33,7 @@ class RateBusiness {
     }
 
     /**
-     * @description
+     * @description rate driver
      * @route POST /RateDriver
      * @param {Object} rate
      */
@@ -154,7 +154,7 @@ class RateBusiness {
     }
 
     /**
-     * @description
+     * @description rate passengers
      * @route POST /RatePassengers
      * @param {Object} rate
      */
@@ -324,7 +324,7 @@ class RateBusiness {
     }
 
     /**
-     * @description
+     * @description get user reviews
      * @route POST /GetUserReviews
      * @param {Person} personClient
      */

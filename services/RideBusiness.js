@@ -71,7 +71,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
         }
     }
     /**
-     * @description List rides
+     * @description add a ride
      * @route POST /AddRide
      * @param {Ride} ride
      */
@@ -174,7 +174,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
     }
 
     /**
-     * @description List rides
+     * @description edit ride
      * @route POST /EditRide
      * @param {Ride} newRide
      */
@@ -261,7 +261,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
     }
 
     /**
-     * @description List rides
+     * @description cancel ride
      * @route POST /CancelRide
      * @param {Ride} ride
      */
@@ -348,7 +348,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
         }
     }
     /**
-     * @description List rides
+     * @description get upcoming rides
      * @route POST /GetMyUpcomingRides
      */
     async getMyUpcomingRides() {
@@ -454,7 +454,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
         return rides;
     }
     /**
-     * @description List rides
+     * @description get rides history
      * @route POST /GetMyRidesHistory
      * @param {User} user
      */
@@ -488,7 +488,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
     }
     
         /**
-     * @description List rides
+     * @description get location
      * @route POST /GetLocation
      * @param {Location} location
      */

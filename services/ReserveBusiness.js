@@ -81,7 +81,7 @@ class ReserveBusiness {
 
     
     /**
-     * @description edit person info
+     * @description get reservations
      * @route POST /GetReservation 
      * @param {Reserve} reservation
      */
@@ -259,7 +259,7 @@ class ReserveBusiness {
     }
 
 /**
-     * @description 
+     * @description  edit reservation
      * @route POST /EditReservation 
      * @param {Reserve} newReservation
      * @param {String} fullName
@@ -383,7 +383,7 @@ class ReserveBusiness {
   }
   
     /**
-     * @description edit person info
+     * @description cancel reservation
      * @route POST /CancelReserved 
      * @param {Reserve} reserve
      */

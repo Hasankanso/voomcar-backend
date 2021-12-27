@@ -57,7 +57,7 @@ class UserBusiness {
         return code_string;
     }
     /**
-     * @description this function to send email
+     * @description logout
      * @route POST /Logout
      */
     async logout() {
@@ -71,7 +71,7 @@ class UserBusiness {
     }
 
     /**
-     * @description this function to send email
+     * @description contact us
      * @route POST /ContactUs
      * @param {var} data
      */
@@ -123,7 +123,7 @@ class UserBusiness {
     
     
     /**
-     * @description request code for loggin
+     * @description check user if exist or not
      * @route POST /CheckUserExist 
      *  @param {User} user
      */
@@ -147,7 +147,7 @@ class UserBusiness {
 
   
     /**
-     * @description 
+     * @description  change user email
      * @route POST /ChangeEmail 
      *  @param {User} user
      */
@@ -188,7 +188,7 @@ class UserBusiness {
 
 
     /**
-     * @description request verification code for loggin
+     * @description request verification code for login
      * @route POST /RequestCode 
      *  @param {Person} person
      */
@@ -278,7 +278,7 @@ class UserBusiness {
         queryB.setRelated(["countryInformations", "statistics"]);
         user.person = await Backendless.Data.of("person").find(queryB);
         user.person=user.person[0];
-        
+
         //update FCM token
         user.person.token = person.token;
         await Backendless.Data.of("person").save(user.person);
@@ -392,7 +392,7 @@ class UserBusiness {
     }
 
     /**
-     * @description 
+     * @description  change user phone number
      * @route POST /ChangePhone 
      *  @param {User} user
      */
@@ -474,7 +474,7 @@ class UserBusiness {
         //delete rates
         await Backendless.Data.of("rate").bulkDelete("target='" + oldPerson.objectId + "'");
 
-
+ 
         //get driver
         var whereClause = "person='" + oldPerson.objectId + "'";
         var queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
@@ -835,6 +835,7 @@ if(cars.length)
      * @private
      */
     static async deleteDrivenRides(drivenRides, oldPerson, driver) {
+        const {sendNotificationToMultipleUser} = require('../lib/generalRoutines');
         for (var i = 0; i < drivenRides.length; i++) {
             if (drivenRides[i].map != null && drivenRides[i].map != "") {
               try{
