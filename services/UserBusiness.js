@@ -625,7 +625,7 @@ class UserBusiness {
         user.password = password;
         
         var registeredPerson = user.person;
-        registeredPerson.gender = (user.person.gender === true);
+        registeredPerson.gender = user.person.gender;
         var bday = user.person.birthday;
         registeredPerson.birthday = Date.parse(bday);
         var countryInfo = registeredPerson.countryInformations.id;
