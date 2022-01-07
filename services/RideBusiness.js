@@ -48,7 +48,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
                 return createError(-8008, "StopTime_Out_Of_Bound")
         }
 
-        if (description.length < 25 || description.length > 400) {
+        if (description.length < 3 || description.length > 400) {
             return createError(-8009, "Comment_Length_is_Not_Suitable");
 
         }

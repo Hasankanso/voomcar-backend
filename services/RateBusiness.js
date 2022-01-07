@@ -88,20 +88,20 @@ class RateBusiness {
             return createError(-6004, "Reservation_not_found");
         }
 
-        //add rates
+        //add rate
         var savedRate = await Rate.save(rate);
 
         //create realations.
         var rateTable = Backendless.Data.of("rate");
         var relationPromisis = [];
-        relationPromisis.push(rateTable.setRelation(savedRate, "ride", [rates[i].ride]));
-        relationPromisis.push(rateTable.setRelation(savedRate, "target", [rates[i].target]));
+        relationPromisis.push(rateTable.setRelation(savedRate, "ride", [rate.ride]));
+        relationPromisis.push(rateTable.setRelation(savedRate, "target", [rate.target]));
 
         //add relations.
         var ratePromisis = await Promise.all(relationPromisis);
 
         //update driver statistics
-        await RateBusiness.updateStatistics(rideFound.driver.person.statistics, rates[0]);
+        await RateBusiness.updateStatistics(rideFound.driver.person.statistics, rate);
 
 
         //send notifications.
@@ -225,13 +225,22 @@ class RateBusiness {
                 for (var j = 0; j < allReservationsFound.length; j++) {
                     var pass = allReservationsFound[j];
                     if (pass.person.objectId === passenger.person.objectId &&
-                        pass.person.objectId !== "CANCELED") {
+                        pass.status !== "CANCELED") {
                         isCanceledThenReserve = true;
                     }
                 }
             }
             if (!isCanceledThenReserve) {
-                reservationsFound.push(passenger);
+                var alreadyAdded = false;
+                for (var k =0;k<reservationsFound.length;k++) {
+                  var reservation=reservationsFound[k];
+                  if (reservation.person.objectId == passenger.person.objectId) {
+                    alreadyAdded = true;
+                  }
+                }
+                if (!alreadyAdded) {
+                    reservationsFound.push(passenger);
+                }
             }
         }
 
