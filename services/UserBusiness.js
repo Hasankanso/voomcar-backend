@@ -471,6 +471,7 @@ class UserBusiness {
         
         await UserBusiness.deleteReseravtions(oldPerson);
 
+
         //delete rates
         await Backendless.Data.of("rate").bulkDelete("target='" + oldPerson.objectId + "'");
 
@@ -500,6 +501,7 @@ class UserBusiness {
         //delete person
         await Backendless.Data.of('person').remove(oldPerson);
         }
+
         //delete user
         await Backendless.Data.of('Users').remove(oldUser);
     }
@@ -576,7 +578,6 @@ class UserBusiness {
         await this.deleteUser({
             "phone": decoded.phone_number
         });
-        
         return await UserBusiness.saveUserAndPerson(user);
     }
     
@@ -869,8 +870,10 @@ if(cars.length)
      * @private
      */
     static async getDrivenRides(driverId) {
-      
-        var whereClauseRide = "driver='" + driverId + "' AND leavingDate > '" + Date.now() + "'";
+      var now = new Date();
+      now.setDate(now.getDate()-2);
+      now=now.getTime()
+        var whereClauseRide = "driver='" + driverId + "' AND leavingDate > '" + now + "'";
        var queryBuilderRide = Backendless.DataQueryBuilder.create().setWhereClause(whereClauseRide);
         queryBuilderRide.setRelated(["car", "from", "to"]);
        var drivenRides = await Backendless.Data.of("ride").find(queryBuilderRide);
@@ -890,8 +893,10 @@ if(cars.length)
      * @private
      */
     static async getReservedRides(personFound) {
-        
-        var whereClause = "person='" + personFound.objectId + "' AND ride.leavingDate > '" + Date.now() + "' AND status != 'CANCELED'";
+        var now = new Date();
+        now.setDate(now.getDate()-2);
+        now=now.getTime()
+        var whereClause = "person='" + personFound.objectId + "' AND ride.leavingDate > '" + now + "' AND status != 'CANCELED'";
         var queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
         queryBuilder.setRelated(["ride", "ride.car", "ride.from", "ride.to", "ride.driver", "ride.driver.person", "ride.driver.person.countryInformations", "ride.driver.person.statistics"]);
         var reserveRidesFound = await Backendless.Data.of("reserve").find(queryBuilder);

@@ -401,8 +401,10 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
      * @private
      */
     static async getAllDrivenRides(driverId) {
-
-        var whereClauseRide = "driver='" + driverId + "' AND leavingDate > '" + Date.now() + "'";
+ var now = new Date();
+      now.setDate(now.getDate()-2);
+      now=now.getTime()
+        var whereClauseRide = "driver='" + driverId + "' AND leavingDate > '" + now + "'";
         var queryBuilderRide = Backendless.DataQueryBuilder.create().setWhereClause(whereClauseRide);
         queryBuilderRide.setRelated(["car", "from", "to"]);
         var drivenRides = await Backendless.Data.of("ride").find(queryBuilderRide);
@@ -422,9 +424,11 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
      * @private
      */
     static async getAllReservedRides(personFound) {
+ var now = new Date();
+      now.setDate(now.getDate()-2);
+      now=now.getTime()
 
-
-        var whereClause = "person='" + personFound.objectId + "' AND ride.leavingDate > '" + Date.now() + "' AND status != 'CANCELED'";
+        var whereClause = "person='" + personFound.objectId + "' AND ride.leavingDate > '" + now + "' AND status != 'CANCELED'";
 
         var queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
 
