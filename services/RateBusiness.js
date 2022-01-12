@@ -199,15 +199,15 @@ class RateBusiness {
             return createError(-6002, "Rate_too_early");
         }
 
-        var ids = "('";
+        var ids = "(";
         for (var i = 0; i < rates.length; i++) {
 
             if (i == rates.length - 1) {
-                ids += rates[i].target + "')";
+                ids += "'"+rates[i].target + "')";
                 break;
             }
 
-            ids += rates[i].target + "',";
+            ids += "'"+rates[i].target + "',";
         }
 
         //get all reservations to compare them with provided reserveClause
