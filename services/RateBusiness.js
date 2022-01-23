@@ -22,7 +22,7 @@ class RateBusiness {
         }
 
         if (rate.grade < 3) {
-            if (rate.comment == null || rate.comment.length < 20) {
+            if (rate.comment == null || rate.comment.length < 5) {
                 return createError(-6006, "Comment_too_short");
             }
             if (rate.reason == null || rate.reason < 0 || rate.reason > 6) {
@@ -142,7 +142,7 @@ class RateBusiness {
             }
 
             if (rate.grade < 3) {
-                if (rate.comment == null || rate.comment.length < 20) {
+                if (rate.comment == null || rate.comment.length < 5) {
                     return createError(-6006, "Comment_too_short");
                 }
                 if (rate.reason == null || rate.reason < 0 || rate.reason > 6) {
