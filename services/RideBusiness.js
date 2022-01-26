@@ -48,7 +48,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
                 return createError(-8008, "StopTime_Out_Of_Bound")
         }
 
-        if (description.length < 25 || description.length > 400) {
+        if (description.length < 3 || description.length > 400) {
             return createError(-8009, "Comment_Length_is_Not_Suitable");
 
         }
@@ -71,7 +71,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
         }
     }
     /**
-     * @description List rides
+     * @description add a ride
      * @route POST /AddRide
      * @param {Ride} ride
      */
@@ -174,7 +174,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
     }
 
     /**
-     * @description List rides
+     * @description edit ride
      * @route POST /EditRide
      * @param {Ride} newRide
      */
@@ -261,7 +261,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
     }
 
     /**
-     * @description List rides
+     * @description cancel ride
      * @route POST /CancelRide
      * @param {Ride} ride
      */
@@ -348,7 +348,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
         }
     }
     /**
-     * @description List rides
+     * @description get upcoming rides
      * @route POST /GetMyUpcomingRides
      */
     async getMyUpcomingRides() {
@@ -401,8 +401,10 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
      * @private
      */
     static async getAllDrivenRides(driverId) {
-
-        var whereClauseRide = "driver='" + driverId + "' AND leavingDate > '" + Date.now() + "'";
+ var now = new Date();
+      now.setDate(now.getDate()-2);
+      now=now.getTime()
+        var whereClauseRide = "driver='" + driverId + "' AND leavingDate > '" + now + "'";
         var queryBuilderRide = Backendless.DataQueryBuilder.create().setWhereClause(whereClauseRide);
         queryBuilderRide.setRelated(["car", "from", "to"]);
         var drivenRides = await Backendless.Data.of("ride").find(queryBuilderRide);
@@ -422,9 +424,11 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
      * @private
      */
     static async getAllReservedRides(personFound) {
+ var now = new Date();
+      now.setDate(now.getDate()-2);
+      now=now.getTime()
 
-
-        var whereClause = "person='" + personFound.objectId + "' AND ride.leavingDate > '" + Date.now() + "' AND status != 'CANCELED'";
+        var whereClause = "person='" + personFound.objectId + "' AND ride.leavingDate > '" + now + "' AND status != 'CANCELED'";
 
         var queryBuilder = Backendless.DataQueryBuilder.create().setWhereClause(whereClause);
 
@@ -454,7 +458,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
         return rides;
     }
     /**
-     * @description List rides
+     * @description get rides history
      * @route POST /GetMyRidesHistory
      * @param {User} user
      */
@@ -488,7 +492,7 @@ class RideBusiness extends Backendless.ServerCode.PersistenceItem {
     }
     
         /**
-     * @description List rides
+     * @description get location
      * @route POST /GetLocation
      * @param {Location} location
      */

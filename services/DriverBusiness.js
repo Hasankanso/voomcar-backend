@@ -7,7 +7,7 @@ class location extends Backendless.ServerCode.PersistenceItem {}
 class DriverBusiness {
  
     /**
-     * @description
+     * @description become a drive
      * @route POST /BecomeDriver
      * @param {Driver} driver
      */
@@ -123,7 +123,7 @@ class DriverBusiness {
     
     
     /**
-     * @description
+     * @description edit regions
      * @route POST /EditRegions
      * @param {Driver} driver
      */

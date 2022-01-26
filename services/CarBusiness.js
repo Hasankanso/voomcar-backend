@@ -18,7 +18,7 @@ class CarBusiness {
 
 
     /**
-     * @description
+     * @description add car
      * @route POST /AddCar
      * @param {Car} car
      */
@@ -61,7 +61,7 @@ class CarBusiness {
     
 
     /**
-     * @description
+     * @description update car
      * @route POST /UpdateCar
      * @param {Car} car
      */
@@ -137,7 +137,7 @@ class CarBusiness {
 
 
     /**
-     * @description
+     * @description delete car
      * @route POST /DeleteCar
      * @param {Car} car
      */

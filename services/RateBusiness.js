@@ -22,7 +22,7 @@ class RateBusiness {
         }
 
         if (rate.grade < 3) {
-            if (rate.comment == null || rate.comment.length < 20) {
+            if (rate.comment == null || rate.comment.length < 5) {
                 return createError(-6006, "Comment_too_short");
             }
             if (rate.reason == null || rate.reason < 0 || rate.reason > 6) {
@@ -33,7 +33,7 @@ class RateBusiness {
     }
 
     /**
-     * @description
+     * @description rate driver
      * @route POST /RateDriver
      * @param {Object} rate
      */
@@ -88,20 +88,20 @@ class RateBusiness {
             return createError(-6004, "Reservation_not_found");
         }
 
-        //add rates
+        //add rate
         var savedRate = await Rate.save(rate);
 
         //create realations.
         var rateTable = Backendless.Data.of("rate");
         var relationPromisis = [];
-        relationPromisis.push(rateTable.setRelation(savedRate, "ride", [rates[i].ride]));
-        relationPromisis.push(rateTable.setRelation(savedRate, "target", [rates[i].target]));
+        relationPromisis.push(rateTable.setRelation(savedRate, "ride", [rate.ride]));
+        relationPromisis.push(rateTable.setRelation(savedRate, "target", [rate.target]));
 
         //add relations.
         var ratePromisis = await Promise.all(relationPromisis);
 
         //update driver statistics
-        await RateBusiness.updateStatistics(rideFound.driver.person.statistics, rates[0]);
+        await RateBusiness.updateStatistics(rideFound.driver.person.statistics, rate);
 
 
         //send notifications.
@@ -142,7 +142,7 @@ class RateBusiness {
             }
 
             if (rate.grade < 3) {
-                if (rate.comment == null || rate.comment.length < 20) {
+                if (rate.comment == null || rate.comment.length < 5) {
                     return createError(-6006, "Comment_too_short");
                 }
                 if (rate.reason == null || rate.reason < 0 || rate.reason > 6) {
@@ -154,7 +154,7 @@ class RateBusiness {
     }
 
     /**
-     * @description
+     * @description rate passengers
      * @route POST /RatePassengers
      * @param {Object} rate
      */
@@ -199,15 +199,15 @@ class RateBusiness {
             return createError(-6002, "Rate_too_early");
         }
 
-        var ids = "('";
+        var ids = "(";
         for (var i = 0; i < rates.length; i++) {
 
             if (i == rates.length - 1) {
-                ids += rates[i].target + "')";
+                ids += "'"+rates[i].target + "')";
                 break;
             }
 
-            ids += rates[i].target + "',";
+            ids += "'"+rates[i].target + "',";
         }
 
         //get all reservations to compare them with provided reserveClause
@@ -225,13 +225,22 @@ class RateBusiness {
                 for (var j = 0; j < allReservationsFound.length; j++) {
                     var pass = allReservationsFound[j];
                     if (pass.person.objectId === passenger.person.objectId &&
-                        pass.person.objectId !== "CANCELED") {
+                        pass.status !== "CANCELED") {
                         isCanceledThenReserve = true;
                     }
                 }
             }
             if (!isCanceledThenReserve) {
-                reservationsFound.push(passenger);
+                var alreadyAdded = false;
+                for (var k =0;k<reservationsFound.length;k++) {
+                  var reservation=reservationsFound[k];
+                  if (reservation.person.objectId == passenger.person.objectId) {
+                    alreadyAdded = true;
+                  }
+                }
+                if (!alreadyAdded) {
+                    reservationsFound.push(passenger);
+                }
             }
         }
 
@@ -324,7 +333,7 @@ class RateBusiness {
     }
 
     /**
-     * @description
+     * @description get user reviews
      * @route POST /GetUserReviews
      * @param {Person} personClient
      */
