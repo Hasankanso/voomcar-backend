@@ -75,7 +75,6 @@ class ReserveBusiness {
 
         queryBuilder.setRelated(["car", "driver", "from", "to", "countryInformations", "driver.person.countryInformations", "driver.person", "driver.person.statistics"]);
         var ridesFound = await Ride.find(queryBuilder);
-        console.log(ridesFound)
         return ridesFound;
     }
 
