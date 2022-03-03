@@ -3,7 +3,7 @@
 class Reserve extends Backendless.ServerCode.PersistenceItem {}
 class Ride extends Backendless.ServerCode.PersistenceItem {}
 
-var radius = 5000; //5 km
+var radius = 20000; //5 km
 var seats_reserved_action = "SEATS_RESERVED";
 
 class ReserveBusiness {
