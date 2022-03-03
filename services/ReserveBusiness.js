@@ -3,7 +3,7 @@
 class Reserve extends Backendless.ServerCode.PersistenceItem {}
 class Ride extends Backendless.ServerCode.PersistenceItem {}
 
-var radius = 5000; //5 km
+var radius = 20000; //20 km
 var seats_reserved_action = "SEATS_RESERVED";
 
 class ReserveBusiness {
@@ -75,7 +75,6 @@ class ReserveBusiness {
 
         queryBuilder.setRelated(["car", "driver", "from", "to", "countryInformations", "driver.person.countryInformations", "driver.person", "driver.person.statistics"]);
         var ridesFound = await Ride.find(queryBuilder);
-        console.log(ridesFound)
         return ridesFound;
     }
 
